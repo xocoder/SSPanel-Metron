@@ -303,6 +303,17 @@ $_ENV['vmq_secret']  = '';  // 通讯密钥
 $_ENV['vmq_url']  = '';     // 服务器地址
 $_ENV['vmq_param']  = 'bob666';  // (选填)传输参数
 
+$_ENV['SPEEDPay']=[
+    'partner' => "XXXX", //商户号
+    'key' => "XXXXXXXXX", //商户key
+    'sign_type' => strtoupper('MD5'),
+    'input_charset' => strtolower('utf-8'),
+    'subjects' => "奶牛不吃奶",                  //商品名称，目前无意义
+    'transport' => 'https',                   //访问模式,根据自己的服务器是否支持ssl访问，若支持请选择https；若不支持请选择http
+    'appname' => $_ENV['appName'],           //网站英文名
+    'min_price' => '1'                       //最小支付金额(请填正数)
+];
+
 #alipay,f2fpay
 $_ENV['f2fpay_app_id'] = '';
 $_ENV['f2fpay_p_id'] = '';
