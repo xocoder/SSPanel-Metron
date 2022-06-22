@@ -49,6 +49,7 @@ class MetronPay extends AbstractPayment
                 return json_encode(['ret' => 0, 'msg' => "金额必须大于0元"]);
             }
         }
+
         $typeArray=explode('_',$type);
         if(count($typeArray)>1)
             $type=$typeArray[1];
@@ -93,7 +94,7 @@ class MetronPay extends AbstractPayment
                     } else {
                         $return = array(
                             'ret' => 0,
-                            'msg' => $result['errmsg']
+                            'msg' => $result//['errmsg']
                         );
                     }
                     return json_encode($return);
