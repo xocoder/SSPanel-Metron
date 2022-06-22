@@ -84,7 +84,7 @@ $_MT['user_level'] = [      // 等级 => 对应的名称显示
 ];
 #####  用户注册  --------------------------------------------------------------------------------------------
 $_MT['register_code']               = false;          // true: 注册必须邀请码, false: 邀请码可不填 (admin面板 - 用户注册 - 将注册模式改为 invite)
-$_MT['register_restricted_email']   = true;      // 设置为true时，注册时必须使用指定的邮箱后缀;
+$_MT['register_restricted_email']   = false;      // 设置为true时，注册时必须使用指定的邮箱后缀;
 $_MT['list_of_available_mailboxes'] = [ '@qq.com', '@gmail.com', '@outlook.com', '@163.com', '@126.com', '@live.com', '@msn.com', '@yeah.net', '@foxmail.com', ];         // 注册邮箱可以使用的邮箱后缀,仅在上面设置为true时生效;
 $_MT['disable_mailbox_list']        = [ '@bcaoo.com', '@chacuo.net', '@tmpmail.net', '@tmail.ws', '@tmpmail.org', '@moimoi.re', '@bccto.me', '@027168.com', '@disbox.org', '@linshiyouxiang.net', '@t.odmail.cn', '@tmails.net', '@moakt.co', '@moakt.ws', '@disbox.net', '@bareed.ws', ];            // 注册邮箱禁止使用的邮箱后缀;
 
@@ -205,7 +205,7 @@ $_MT['pay_qqpay']      = 'none';      // QQ钱包默认
 $_MT['max_qqpay_num']  = 0;     // 使用微信支付时, 金额大于等于设定值, 使用下方支付方式
 $_MT['max_qqpay_pay']  = 'none';  // 支付金额大于上面设置的值时, 使用此支付方式
 
-$_MT['pay_crypto']     = 'bobpay';	// 数字货币支付
+$_MT['pay_crypto']     = 'none';	// 数字货币支付
 
 $_MT['mix_amount'] = 0;     // 限制每次最低充值, 商店购买套餐不受此限制。（因为商店扣除余额后可能出现很低的金额）
 
