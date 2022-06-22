@@ -94,7 +94,7 @@ class MetronPay extends AbstractPayment
                     } else {
                         $return = array(
                             'ret' => 0,
-                            'msg' => $result//['errmsg']
+                            'msg' => $result['errmsg']."======"
                         );
                     }
                     return json_encode($return);
@@ -650,7 +650,7 @@ class MetronPay extends AbstractPayment
                     return json_encode($return);
             }
         } else {
-            return json_encode(['ret' => 0, 'msg' => '错误的支付方式']);
+            return json_encode(['ret' => 0, 'msg' => '错误的支付方式'.$type]);
         }
     }
 
