@@ -53,7 +53,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="ml-3">
-                                                                        <a href="{$c_w['url']}" class="btn btn-default font-weight-bold btn-pill" target="_blank">使用教程</a>
+                                                                        <a href="{$c_w['url']}" class="btn btn-success font-weight-bold btn-pill" target="_blank">使用教程</a>
                                                                         <a href="{$c_w['down']}" class="btn btn-primary font-weight-bold btn-pill" target="_blank">点击下载</a>
                                                                     </div>
                                                                 </div>
@@ -81,7 +81,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="ml-3">
-                                                                        <a href="{$c_w['url']}" class="btn btn-default font-weight-bold btn-pill" target="_blank">使用教程</a>
+                                                                        <a href="{$c_w['url']}" class="btn btn-success font-weight-bold btn-pill" target="_blank">使用教程</a>
                                                                         <a href="{$c_w['down']}" class="btn btn-primary font-weight-bold btn-pill" target="_blank">点击下载</a>
                                                                     </div>
                                                                 </div>
@@ -134,7 +134,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="ml-3">
-                                                                        <a href="{$c_w['url']}" class="btn btn-default font-weight-bold btn-pill" target="_blank">使用教程</a>
+                                                                        <a href="{$c_w['url']}" class="btn btn-success font-weight-bold btn-pill" target="_blank">使用教程</a>
                                                                         <a href="{$c_w['down']}" class="btn btn-primary font-weight-bold btn-pill" target="_blank">点击下载</a>
                                                                     </div>
                                                                 </div>
