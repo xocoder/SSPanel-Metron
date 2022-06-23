@@ -15,8 +15,7 @@ class Mailgun extends Base
     public function __construct()
     {
         $this->config = $this->getConfig();
-        //$this->mg = MailgunService::create($this->config['key']);
-        $this->mg=new MailgunService($this->config['key']);
+        $this->mg = MailgunService::create($this->config['key']);
         $this->domain = $this->config['domain'];
         $this->sender = $this->config['sender'];
     }
