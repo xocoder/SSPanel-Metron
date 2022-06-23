@@ -52,6 +52,7 @@
                                                                             <div class="font-size-sm text-muted font-weight-bold mt-1">{$c_w['vs']}</div>
                                                                         </div>
                                                                     </div>
+                                                                    <a href="{$c_w['url']}" class="btn btn-default font-weight-bold btn-pill">使用教程</a>
                                                                     <a href="{$c_w['down']}" class="btn btn-primary font-weight-bold btn-pill">点击下载</a>
                                                                 </div>
                                                                 {if !$c_w@last}
@@ -77,6 +78,7 @@
                                                                             <div class="font-size-sm text-muted font-weight-bold mt-1">{$c_w['vs']}</div>
                                                                         </div>
                                                                     </div>
+                                                                    <a href="{$c_w['url']}" class="btn btn-default font-weight-bold btn-pill">使用教程</a>
                                                                     <a href="{$c_w['down']}" class="btn btn-primary font-weight-bold btn-pill" target="_blank">点击下载</a>
                                                                 </div>
                                                                 {if !$c_w@last}
@@ -127,6 +129,7 @@
                                                                             <div class="font-size-sm text-muted font-weight-bold mt-1">{$c_w['vs']}</div>
                                                                         </div>
                                                                     </div>
+                                                                    <a href="{$c_w['url']}" class="btn btn-default font-weight-bold btn-pill">使用教程</a>
                                                                     <a href="{$c_w['down']}" class="btn btn-primary font-weight-bold btn-pill">点击下载</a>
                                                                 </div>
                                                                 {if !$c_w@last}
