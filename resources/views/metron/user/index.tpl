@@ -415,7 +415,7 @@
     {include file='include/global/scripts.tpl'}
     {include file='include/global/import_sublink.tpl'}
 
-    {if $_ENV['enable_mylivechat']===true}
+    {if $config['enable_mylivechat']===true}
         <!--mylivechat-->
         {include file='include/index/mylivechat.tpl'}
     {/if}
