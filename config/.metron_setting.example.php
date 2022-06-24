@@ -39,7 +39,7 @@ $_MT['pop_time']     = 1440;                          // 每次弹出间隔多�
 $_MT['pop_text'] = '
 <p class="text-danger font-weight-bold">如何防止网站被污染打不开？</p>
 <p class="text-muted font-weight-bold">
-收藏网址 <a href="https://url.com" target=”_blank”>https://url.com</a> (如果卡在英文界面进不去，请把网页翻译功能关闭重试)，点击第一个图标即可进入最新网站，后续如有更换域名也会优先更新此处链接<br>
+收藏网址 <a href="https://user.marsjsq.com" target=”_blank”>user.marsjsq.com</a>后续如有更换域名也会优先更新此处链接<br>
 </p>
 ';
 
