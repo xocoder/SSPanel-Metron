@@ -395,7 +395,7 @@
     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="QRModal">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
-                <p id="web_qr"></p>
+                <div id="web_qr"></div>
             </div>
         </div>
     </div>
@@ -409,7 +409,14 @@
         <script> mt.pop('{$metron['pop_time']}') </script>
     {/if}
     <script>
-        $('#web_qr').qrcode("{$config['baseUrl']}");
+        var qrcode = new QRCode(document.getElementById("web_qr"), {
+            text: "{$config['baseUrl']}",
+            width: 128,
+            height: 128,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
 
         {if $user->class == 0}
         $('#userClassExpire').modal()
