@@ -415,6 +415,10 @@
     {include file='include/global/scripts.tpl'}
     {include file='include/global/import_sublink.tpl'}
 
+    {if $_ENV['enable_mylivechat']===true}
+        <!--mylivechat-->
+        {include file='include/index/mylivechat.tpl'}
+    {/if}
     {if $metron['enable_pop'] === true}
         <!-- 重要公告 -->
         {include file='include/index/pop.tpl'}
