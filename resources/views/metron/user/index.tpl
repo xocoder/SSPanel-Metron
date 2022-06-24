@@ -77,7 +77,7 @@
                                                         {if $user->class == $user_level_class}{$user_level_name}{/if}
                                                     {/foreach}
                                                     :
-                                                    {if $user->class_expire != "1989-06-04 00:05:00" && $user->class >= 1}
+                                                    {if $user->class_expire != "1989-06-04 00:05:00"}
                                                         {substr($user->class_expire, 0, 10)} 到期
                                                     {elseif $user->class == 0}
                                                         已过期
