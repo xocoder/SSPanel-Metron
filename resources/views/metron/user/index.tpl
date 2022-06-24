@@ -392,7 +392,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="userClassExpire" data-backdrop="static" tabindex="-1" role="dialog" id="QRModal"
+    <div class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" id="QRModal"
          aria-labelledby="qrcode-sublink-modal-title" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content shadow-lg">
