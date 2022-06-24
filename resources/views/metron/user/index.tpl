@@ -392,13 +392,25 @@
         </div>
     </div>
 
-    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="QRModal">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div id="web_qr"></div>
+    <div class="modal fade" id="userClassExpire" data-backdrop="static" tabindex="-1" role="dialog" id="QRModal"
+         aria-labelledby="qrcode-sublink-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header">
+                    <h4 class="modal-title {$style[$theme_style]['modal']['text_title']}"
+                        id="qrcode-sublink-modal-title"><strong>手机扫码访问本站</strong></h4>
+                </div>
+                <div class="modal-body" id="web_qr">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn {$style[$theme_style]['modal']['btn_close']} font-weight-bold"
+                            data-dismiss="modal">关闭
+                    </button>
+                </div>
             </div>
         </div>
     </div>
+
 
     {include file='include/global/scripts.tpl'}
     {include file='include/global/import_sublink.tpl'}
