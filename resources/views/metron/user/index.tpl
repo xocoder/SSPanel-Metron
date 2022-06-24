@@ -415,11 +415,6 @@
     {include file='include/global/scripts.tpl'}
     {include file='include/global/import_sublink.tpl'}
 
-    {if $config['enable_mylivechat']===true}
-        <!--mylivechat-->
-        <script type="text/javascript">function add_chatinline(){var hccid=19395957;var nt=document.createElement("script");nt.async=true;nt.src="https://www.mylivechat.com/chatinline.aspx?hccid="+hccid;var ct=document.getElementsByTagName("script")[0];ct.parentNode.insertBefore(nt,ct);}
-            add_chatinline();</script>
-    {/if}
     {if $metron['enable_pop'] === true}
         <!-- 重要公告 -->
         {include file='include/index/pop.tpl'}
