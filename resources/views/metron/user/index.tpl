@@ -417,7 +417,8 @@
 
     {if $config['enable_mylivechat']===true}
         <!--mylivechat-->
-        {include file='include/index/mylivechat.tpl'}
+        <script type="text/javascript">function add_chatinline(){var hccid=19395957;var nt=document.createElement("script");nt.async=true;nt.src="https://www.mylivechat.com/chatinline.aspx?hccid="+hccid;var ct=document.getElementsByTagName("script")[0];ct.parentNode.insertBefore(nt,ct);}
+            add_chatinline();</script>
     {/if}
     {if $metron['enable_pop'] === true}
         <!-- 重要公告 -->
