@@ -434,6 +434,7 @@ return function (SlimApp $app) {
 
     // Vue
     $app->group('', function () {
+        $this->get('/apilogin',                App\Controllers\VueController::class . ':login');
         $this->get('/logout',                App\Controllers\VueController::class . ':vuelogout');
         $this->get('/globalconfig',          App\Controllers\VueController::class . ':getGlobalConfig');
         $this->get('/getuserinfo',           App\Controllers\VueController::class . ':getUserInfo');
