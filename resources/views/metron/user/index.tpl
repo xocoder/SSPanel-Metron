@@ -18,8 +18,8 @@
                                 </div>
                             </div>
                             <div class="d-flex align-items-center">
-                                <a href="javascript:;" class="btn btn-danger font-weight-bold py-3 px-6">
-                                    <i class="metron-qrcode text-white"></i>扫码打开网站</a>
+                                <button type="button" data-toggle="modal" data-target="#QRModal" href="javascript:;" class="btn btn-danger font-weight-bold py-3 px-6">
+                                    <i class="metron-qrcode text-white"></i>扫码打开网站</button>
                                 {if $user->isAbleToCheckin()}
                                     <a href="javascript:;"
                                        class="btn {$style[$theme_style]['global']['btn_subheader']} font-weight-bold py-3 px-6"
@@ -392,6 +392,14 @@
         </div>
     </div>
 
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="QRModal">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <p id="web_qr"></p>
+            </div>
+        </div>
+    </div>
+
     {include file='include/global/scripts.tpl'}
     {include file='include/global/import_sublink.tpl'}
 
@@ -401,6 +409,8 @@
         <script> mt.pop('{$metron['pop_time']}') </script>
     {/if}
     <script>
+        $('#web_qr').qrcode("{$config['baseUrl']}");
+
         {if $user->class == 0}
         $('#userClassExpire').modal()
         {/if}
