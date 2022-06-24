@@ -18,6 +18,8 @@
                                 </div>
                             </div>
                             <div class="d-flex align-items-center">
+                                <a href="javascript:;" class="btn btn-danger font-weight-bold py-3 px-6">
+                                    <i class="metron-qrcode text-white"></i>扫码打开网站</a>
                                 {if $user->isAbleToCheckin()}
                                     <a href="javascript:;"
                                        class="btn {$style[$theme_style]['global']['btn_subheader']} font-weight-bold py-3 px-6"

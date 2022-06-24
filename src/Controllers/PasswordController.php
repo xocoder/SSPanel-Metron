@@ -67,7 +67,8 @@ class PasswordController extends BaseController
         }
         $rs['ret'] = 1;
         $rs['msg'] = '重置邮件已经发送,请检查邮箱.';
-        if (!Password::sendResetEmail($email)) {
+        $result=Password::sendResetEmail($email);
+        if (!$result) {
             $rs['ret'] = 0;
             $rs['msg'] = '邮件发送失败，请联系网站管理员。';
         }
