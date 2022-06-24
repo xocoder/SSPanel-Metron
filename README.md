@@ -1,7 +1,6 @@
 ## SSPanel-Metron主题，目前由@BobS9维护开发中。
 
-交流群：[https://t.me/BobShareGroup](https://t.me/BobShareGroup)
-
+[使用文档](https://wiki.sspanel.org) | [配套XrayR后端](https://github.com/xocoder/XrayR) | [API 文档](https://marcosteam.gitbook.io/sspanel-api/)
 #### 1.连接 SSH 安装宝塔面板
 
 #### 2.宝塔面板安装环境, 推荐使用 PHP 7.2、MySQL 5.6、Nginx 1.16
@@ -66,116 +65,25 @@ chown -R www:www 你的文件夹名/
 UPDATE user SET theme='metron'
 ```
 
-### 使用宝塔面板的计划任务配置
+
+###定时任务(注意更换你的网站目录)
 ```
-每日任务 (必须)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每天 0 小时 0 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat Job DailyJob
+crontab -l > crontab.list
 
-检测任务 (必须)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 1 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat Job CheckJob
+echo "*/1 * * * * /usr/bin/php /home/wwwroot/tabler/xcat Job SendMail
+*/1 * * * * /usr/bin/php /home/wwwroot/tabler/xcat Job CheckJob
+0 */1 * * * /usr/bin/php /home/wwwroot/tabler/xcat Job UserJob
+59 23 * * * /usr/bin/php /home/wwwroot/tabler/xcat Statistics CheckIn
+30 23 * * * /usr/bin/php /home/wwwroot/tabler/xcat SendDiaryMail
+0 0 * * * /usr/bin/php /home/wwwroot/tabler/xcat Statistics Another
+0 0 * * * /usr/bin/php -n /home/wwwroot/tabler/xcat Job DailyJob" >> crontab.list
 
-用户账户相关任务 (必须)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每小时
-脚本内容：php /www/wwwroot/你的网站目录/xcat Job UserJob
-
-检查用户会员等级过期任务 (必须)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat Job CheckUserClassExpire
-
-检查账号过期任务 (必须)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每小时
-脚本内容：php /www/wwwroot/你的网站目录/xcat Job CheckUserExpire
-
-定时检测邮件队列 (必须)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 1 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat Job SendMail
-
-每日流量报告 (给开启每日邮件的用户发送邮件)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每天 0 小时 0 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat SendDiaryMail
-
-审计封禁 (建议设置)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 1 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat DetectBan
-
-检测节点被墙 (可选)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 1 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat DetectGFW
-
-检测中转服务器 (可选)
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 5 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat DetectTransfer
-
-Radius (可选)
-synclogin
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 1 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat SyncRadius synclogin
-
-syncvpn
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 1 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat SyncRadius syncvpn
-
-syncnas
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：N分钟 1 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat SyncRadius syncnas
-自动备份 (可选)
-
-整体备份
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：自己设置, 可以设置每30分钟左右
-脚本内容：php /www/wwwroot/你的网站目录/xcat Backup full
-
-只备份核心数据
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：自己设置, 可以设置每30分钟左右
-脚本内容：php /www/wwwroot/你的网站目录/xcat Backup simple
-财务报表 (可选)
-
-日报
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每天 0 小时 0 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat FinanceMail day
-
-周报
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每星期 周日 0 小时 0 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat FinanceMail week
-
-月报
-任务类型：Shell 脚本
-任务名称：自行填写
-执行周期：每月 1 日 0 小时 0 分钟
-脚本内容：php /www/wwwroot/你的网站目录/xcat FinanceMail month
+crontab crontab.list
+rm crontab.list
+```
+###可选定时任务
+```
+5 0 * * * /usr/bin/php /home/wwwroot/tabler/xcat FinanceMail day 
+6 0 * * 0 /usr/bin/php /home/wwwroot/tabler/xcat FinanceMail week
+7 0 1 * * /usr/bin/php /home/wwwroot/tabler/xcat FinanceMail month
 ```
