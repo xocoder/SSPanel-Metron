@@ -80,7 +80,7 @@
                                                     {if $user->class_expire != "1989-06-04 00:05:00"}
                                                         {substr($user->class_expire, 0, 10)} 到期
                                                     {elseif $user->class == 0}
-                                                        已过期
+                                                        已过期,请购买套餐激活账号
                                                     {elseif $user->class == -1}
                                                         请购买套餐激活账号
                                                     {else}永久{/if}
