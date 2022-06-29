@@ -1,0 +1,22 @@
+{
+  "arr": {
+    "shops": [{
+      "id": 1,
+      "name": "\u5305\u6708",
+      "price": "30.00",
+      "content": "{\"bandwidth\":\"50000\",\"expire\":\"30\",\"class\":\"1\",\"class_expire\":\"30\",\"reset\":\"30\",\"reset_value\":\"50000\",\"reset_exp\":\"30\",\"traffic_package\":{\"class\":{\"min\":\"0\",\"max\":\"0\"}},\"speedlimit\":\"0\",\"connector\":\"0\",\"node_group\":\"1\",\"limitamount\":\"0\",\"content_extra\":\"clear-\\u5168\\u7403\\u8282\\u70b9\\u5206\\u5e03;done-\\u5feb\\u901f\\u5ba2\\u670d\\u54cd\\u5e94;done-\\u5168\\u5e73\\u53f0\\u5ba2\\u6237\\u7aef\"}",
+      "auto_renew": 30,
+      "auto_reset_bandwidth": 1,
+      "status": 1
+    }, {
+      "id": 2,
+      "name": "\u5b63\u5ea6",
+      "price": "88.00",
+      "content": "{\"bandwidth\":\"150000\",\"expire\":\"90\",\"class\":\"2\",\"class_expire\":\"90\",\"reset\":\"90\",\"reset_value\":\"150000\",\"reset_exp\":\"90\",\"speedlimit\":\"0\",\"connector\":\"0\",\"node_group\":\"2\",\"limitamount\":\"0\",\"content_extra\":\"check-\\u5168\\u7403\\u8282\\u70b9\\u5206\\u5e03;check-\\u5feb\\u901f\\u5ba2\\u670d\\u54cd\\u5e94;check-\\u5168\\u5e73\\u53f0\\u5ba2\\u6237\\u7aef\"}",
+      "auto_renew": 90,
+      "auto_reset_bandwidth": 1,
+      "status": 1
+    }]
+  },
+  "ret": 1
+}

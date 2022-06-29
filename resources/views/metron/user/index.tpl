@@ -61,7 +61,7 @@
                                                     <div class="d-flex flex-column ml-3 mr-5">
                                                         <div class="font-size-h4 {$style[$theme_style]['index']['text']} mb-2">
                                                             <strong>
-                                                                {if $user->class_expire!="1989-06-04 00:05:00" }
+                                                                {if $user->class_expire!="1989-06-04 00:05:00" && $user->class >= 1}
                                                                     <span class="counter">{$class_left_days}</span>
                                                                     天{elseif $user->class <= 0}
                                                                     <span class="counter">已过期</span>
@@ -77,7 +77,7 @@
                                                         {if $user->class == $user_level_class}{$user_level_name}{/if}
                                                     {/foreach}
                                                     :
-                                                    {if $user->class_expire != "1989-06-04 00:05:00"}
+                                                    {if $user->class_expire!="1989-06-04 00:05:00" && $user->class >= 1}
                                                         {substr($user->class_expire, 0, 10)} 到期
                                                     {elseif $user->class == 0}
                                                         已过期,请购买套餐激活账号
