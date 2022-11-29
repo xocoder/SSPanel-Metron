@@ -2,8 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Controllers\Api\Client\ClientApiController;
+use App\Controllers\Api\V1\ApiController;
 use App\Controllers\MetronController;
 use App\Controllers\VueController;
+use App\Services\Gateway\SPEEDPay;
+use App\Services\Payment;
 use Slim\App as SlimApp;
 use App\Middleware\{Auth, Guest, Admin, Mod_Mu};
 use App\Controllers\Api\V1\Api;
@@ -468,10 +472,20 @@ return function (SlimApp $app) {
 
     // api
     $app->group('/api', function () {
+
         $this->get('/token/{token}', App\Controllers\Api\V1\ApiController::class . ':token');
         $this->post('/token',        App\Controllers\Api\V1\ApiController::class . ':newToken');
         $this->get('/node',          App\Controllers\Api\V1\ApiController::class . ':node')->add(new Api());
         $this->get('/user/{id}',     App\Controllers\Api\V1\ApiController::class . ':userInfo')->add(new Api());
         $this->get('/sublink',       App\Controllers\Api\Client\ClientApiController::class . ':GetSubLink');
+        /*适配客户端*/
+        $this->get('/base',          App\Controllers\Api\Client\ClientApiController::class . ':Base');
+        $this->get('/package',       App\Controllers\Api\Client\ClientApiController::class . ':Package')->add(new Api());
+        //price=39.00&type=pay_alipay&client=web&shopid=1&shopauto=0&shopcoupon=
+        $this->post('/buy',           App\Controllers\Api\Client\ClientApiController::class . ':Buy')->add(new Api());
+        //余额购买套餐
+        $this->post('/balanceBuy',   App\Controllers\Api\Client\ClientApiController::class . ':BalanceBuy')->add(new Api());
+        $this->post('/order',         App\Controllers\Api\Client\ClientApiController::class . ':Order')->add(new Api());
+        $this->post('/updatepasswd',         App\Controllers\Api\Client\ClientApiController::class . ':updatePassword')->add(new Api());
     });
 };

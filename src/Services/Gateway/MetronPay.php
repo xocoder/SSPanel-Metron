@@ -15,7 +15,10 @@ class MetronPay extends AbstractPayment
             $type = $request->getParam('type');
             $client = $request->getParam('client');
             $paylist_id = (int)$request->getParam('paylist_id');
-
+            $uid=0;
+            if(isset($args['uid'])&&$args["uid"]>0) {
+                $uid = $args['uid'];
+            }
             $shopinfo = array();
             $shopinfo['id'] = (int)$request->getParam('shopid');
             if ($request->getParam('shopauto')) {
@@ -83,7 +86,7 @@ class MetronPay extends AbstractPayment
                     return json_encode($return);
                 case ('SPEEDPay'):
                     $SPEEDPay = new SPEEDPay();
-                    $result = $SPEEDPay->MetronPay($type, $price, $shopinfo, $paylist_id);
+                    $result = $SPEEDPay->MetronPay($type, $price, $shopinfo, $paylist_id,$uid);
                     if ($result['errcode'] === 0) {
                         $return = array(
                             'ret' => 1,
@@ -401,7 +404,7 @@ class MetronPay extends AbstractPayment
                     return json_encode($return);
                 case ('SPEEDPay'):
                     $SPEEDPay = new SPEEDPay();
-                    $result = $SPEEDPay->MetronPay($type, $price, $shopinfo, $paylist_id);
+                    $result = $SPEEDPay->MetronPay($type, $price, $shopinfo, $paylist_id,$uid);
                     if ($result['errcode'] === 0) {
                         $return = array(
                             'ret' => 1,

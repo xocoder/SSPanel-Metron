@@ -2,12 +2,13 @@
 
 namespace App\Controllers\Api\V1;
 
+use App\Models\InviteCode;
 use App\Models\Node;
 use App\Models\User;
+use App\Services\Auth;
 use App\Services\Config;
 use App\Utils\Tools;
 use App\Utils\Hash;
-
 use App\Controllers\Api\TokenStorage;
 
 /**
@@ -18,6 +19,7 @@ class ApiController
     public function index()
     {
     }
+
 
     public function token($request, $response, $args)
     {
@@ -65,6 +67,7 @@ class ApiController
             $res['msg'] = 'newToken ok';
             $res['data']['token'] = $tokenStr;
             $res['data']['user_id'] = $user->id;
+            Auth::login($user->id, strtotime($user->expire_in));
             return $response->getBody()->write(json_encode($res));
         }
         $res['ret'] = 0;
@@ -140,6 +143,23 @@ class ApiController
         return $response->getBody()->write(json_encode($res));
     }
 
+    public function getNodes($request, $response, $args){
+        $accessToken = $request->getParam('access_token');
+        $storage = TokenStorage::createTokenStorage();
+        $token = $storage->get($accessToken);
+        $user = User::find($token->userId);
+        $nodes = Node::where('sort', 11)->where('type', '1')->where(
+            static function ($query) use ($user) {
+                $query->where('node_group', '=', $user->node_group)
+                    ->orWhere('node_group', '=', 0);
+            }
+        )->orderBy('name')->get(['id','name','type','server','method','protocol','obfs','info','status','sort',
+            'node_ip','online','node_group','sort']);
+        $res['ret'] = 1;
+        $res['msg'] = 'ok';
+        $res['data'] = $nodes;
+        return $response->getBody()->write(json_encode($res));
+    }
     public function userInfo($request, $response, $args)
     {
         $id = $args['id'];
@@ -152,7 +172,13 @@ class ApiController
             return $response->getBody()->write(json_encode($res));
         }
         $user = User::find($token->userId);
+        $user["unusedTraffic"]=$user->unusedTraffic();
+        $code=InviteCode::where("user_id",$user->id)->select('code')->get();
+        $user['inviteUrl']=Config::get("baseUrl")."/auth/register?code=".$code->code;
         $user->pass = null;
+        $user->transfer_enable=$user->enableTrafficInGB();
+        $user["usedTraffic"]=$user->usedTraffic();
+
         $data = $user;
         $res['ret'] = 1;
         $res['msg'] = 'userInfo ok';

@@ -802,7 +802,16 @@ class UserController extends BaseController
 
     public function buy($request, $response, $args)
     {
-        $user = $this->user;
+        if(isset($args['uid'])){
+            $user = User::find($args['uid']);
+            $user->isLogin=true;
+            $this->user=$user;
+            $res['data']="";
+        }
+        else{
+            $user = $this->user;
+        }
+
         $coupon = $request->getParam('coupon');
         $coupon = trim($coupon);
         $code = $coupon;

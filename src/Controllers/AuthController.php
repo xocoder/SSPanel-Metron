@@ -359,6 +359,7 @@ class AuthController extends BaseController
 
     public function register_helper($name, $email, $passwd, $code, $imtype, $imvalue, $telegram_id)
     {
+        $res['data']="";
         if (Config::getconfig('Register.string.Mode') === 'close') {
             $res['ret'] = 0;
             $res['msg'] = '未开放注册。';
@@ -469,7 +470,7 @@ class AuthController extends BaseController
         $user->class            = (int) Config::getconfig('Register.string.defaultClass');
         $user->node_connector   = (int) Config::getconfig('Register.string.defaultConn');
         $user->node_speedlimit  = (int) Config::getconfig('Register.string.defaultSpeedlimit');
-        $user->expire_in        = date('Y-m-d H:i:s', time() + (int) Config::getconfig('Register.string.defaultExpire_in') * 86400);
+        $user->expire_in        = date('Y-m-d H:i:s', time() + (int) Config::getconfig('Register.string.defaultExpire_in') * 3600);
         $user->reg_date         = date('Y-m-d H:i:s');
         $user->reg_ip           = $_SERVER['REMOTE_ADDR'];
         $user->plan             = 'A';
@@ -508,6 +509,7 @@ class AuthController extends BaseController
 
     public function registerHandle($request, $response)
     {
+        $res['data']="";
         if (Config::getconfig('Register.string.Mode') === 'close') {
             $res['ret'] = 0;
             $res['msg'] = '未开放注册。';

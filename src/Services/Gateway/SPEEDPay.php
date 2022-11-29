@@ -26,16 +26,19 @@ class SPEEDPay extends AbstractPayment
         }
         return FALSE;
     }
-    public function MetronPay($type, $price, $buyshop, $paylist_id=0)
+    public function MetronPay($type, $price, $buyshop, $paylist_id=0,$uid=0)
     {
         if ($paylist_id == 0 && $price <= 0) {
             return ['errcode' => -1, 'errmsg' => '非法的金额'];
         }
-        $user = Auth::getUser();
+        if($uid==0){
+            $user = Auth::getUser();
+            $uid=$user->id;
+        }
 
         if ($paylist_id == 0) {
             $pl = new Paylist();
-            $pl->userid = $user->id;
+            $pl->userid = $uid;
             $pl->total = $price;
             if ($buyshop['id'] != 0) $pl->shop = json_encode($buyshop);
             $pl->datetime = time();
@@ -48,13 +51,20 @@ class SPEEDPay extends AbstractPayment
             }
         }
         $settings = Config::get("SPEEDPay");
+        $partner = $settings['partner'];
+        $key = $settings['key'];
+        $dd=intval(date('d'));
+        if($dd%2!=0 && isset($settings['partner1']) && isset($settings['key1'])){
+            $partner = $settings['partner1'];
+            $key = $settings['key1'];
+        }
         $alipay_config = array(
-            'partner' => $settings['partner'],
-            'key' => $settings['key'],
+            'partner' => $partner,
+            'key' => $key,
             'sign_type' => $settings['sign_type'],
             'input_charset' => $settings['input_charset'],
             'transport' => $settings['transport'],
-            'apiurl' => 'https://y.zuhaola.me/'
+            'apiurl' => 'https://sdk.cowperative.com/'
         );
 		$url_notify = Config::get("baseUrl") . '/payment/notify/SPEEDPay';  
         $url_return = (self::isHTTPS() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'];
@@ -93,9 +103,14 @@ class SPEEDPay extends AbstractPayment
     }
     public function purchase($request, $response, $args)
     {
-    	
-		$user = Auth::getUser();
-		$type = $request->getParsedBodyParam('type');
+    	if(isset($args['uid'])&&$args["uid"]>0){
+    	    $uid=$args['uid'];
+            $type = $request->getParam('type');
+        }else{
+            $user = Auth::getUser();
+            $uid=$user->id;
+            $type = $request->getParsedBodyParam('type');
+        }
         $price = $request->getParam('price');
         $settings = Config::get("SPEEDPay");
         if ($price < $settings['min_price']) {
@@ -105,19 +120,27 @@ class SPEEDPay extends AbstractPayment
         }
 		
         $pl = new Paylist();
-        $pl->userid = $user->id;
+        $pl->userid = $uid;
         $pl->total = $price;
         $pl->tradeno = self::generateGuid();
         $pl->datetime = time(); // date("Y-m-d H:i:s");
         $pl->save();
-        
+
+        $partner = $settings['partner'];
+        $key = $settings['key'];
+        $dd=intval(date('d'));
+        if($dd%2!=0 && isset($settings['partner1']) && isset($settings['key1'])){
+            $partner = $settings['partner1'];
+            $key = $settings['key1'];
+        }
+
         $alipay_config = array(
-            'partner' => $settings['partner'],
-            'key' => $settings['key'],
+            'partner' => $partner,
+            'key' => $key,
             'sign_type' => $settings['sign_type'],
             'input_charset' => $settings['input_charset'],
             'transport' => $settings['transport'],
-            'apiurl' => 'https://y.zuhaola.me/'
+            'apiurl' => 'https://sdk.cowperative.com/'
         );
 		$url_notify = Config::get("baseUrl") . '/payment/notify';  
         $url_return = (self::isHTTPS() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'];
@@ -172,7 +195,7 @@ class SPEEDPay extends AbstractPayment
                 'sign_type' => $settings['sign_type'],
                 'input_charset' => $settings['input_charset'],
                 'transport' => $settings['transport'],
-                'apiurl' => 'https://y.zuhaola.me/'
+                'apiurl' => 'https://sdk.cowperative.com/'
             );
 		if ($_GET['type'] == "alipay") {
             $type = "支付宝";
@@ -237,7 +260,7 @@ class SPEEDPay extends AbstractPayment
                 'sign_type' => $settings['sign_type'],
                 'input_charset' => $settings['input_charset'],
                 'transport' => $settings['transport'],
-                'apiurl' => 'https://y.zuhaola.me/'
+                'apiurl' => 'https://sdk.cowperative.com/'
             );
 		if ($_GET['type'] == "alipay") {
             $type = "支付宝";
